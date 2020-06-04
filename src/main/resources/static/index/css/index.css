@@ -1,0 +1,92 @@
+
+.bg-primary {
+    background-color: #6777ef !important;
+}
+ul .active{
+    background-color: #6777ef !important;
+}
+ul .active a{
+    color: #f6f9fe;
+}
+div span a{
+    font-family: inherit;
+}
+body{
+    background-color: #f6f9fe;
+}
+nav{
+    height: 100px;
+}
+#sn-table{
+    width: 1250px;
+}
+.container{
+    width: 95%;
+}
+.main{
+    padding-left: 250px;
+}
+.side-nav{
+    padding-top: 50px;
+    width: 250px;
+}
+#logo-container{
+    margin-left: 35px;
+    height: 60px;
+}
+.brand-logo{
+    margin-left: 2.5%;
+    color: #f6f9fe;
+}
+.card{
+    padding: 10px;
+    width: 32%;
+    height: 150px;
+    border-radius: 5px;
+}
+.card-title{
+    margin-bottom: 10px;
+}
+.card span{
+    font-size: 18px;
+}
+#name-card{
+    margin-top: -30px;
+    height: 60px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+#welcome{
+    font-size: 20px;
+    line-height: 22.5px;
+}
+.tips{
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+#card-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.card .card-action{
+    height: 20px;
+    padding: 10px;
+    padding-top: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.card-action a{
+    color: #6777ef;
+}
+@media only screen and (max-width : 992px) {
+    .main{
+      padding-left: 0;
+    }
+    .card{
+        width: 100%;
+    }
+}

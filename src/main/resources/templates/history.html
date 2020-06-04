@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>主页|藤县中考会考报名数据管理系统</title>
+    <link rel="icon" type="image/x-icon" th:href="@{~/src/images/icon.ico}">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="shortcut icon" th:href="@{~/src/images/icon.ico}" type="image/x-icon">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" href="./static/history/css/index.css" th:href="@{~/history/css/index.css}"
+        rel="styleSheet" />
+</head>
+
+<body>
+    <ul id="slide-out" class="side-nav fixed">
+        <li><img alt="logo" src="./static/src/images/logo.png" th:src="@{~/src/images/logo.png}" id="logo-container">
+        </li>
+        <li><a href="/index">首页</a></li>
+        <li><a href="/transaction">交易</a></li>
+        <li class="active"><a href="/history">查看交易历史</a></li>
+        <li><a href="/password">修改密码</a></li>
+        <li><a href="/logout">退出登录</a></li>
+    </ul>
+    <div class="main">
+        <nav class="bg-primary" role="navigation">
+            <div class="nav-wrapper">
+                <div class="brand-logo">模拟ATM管理系统</div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="card-panel" id="name-card">
+                <div th:text="${schoolName}" id="welcome">欢迎您，陈炫栋</div>
+            </div>
+            <div class="card" id="m-excel">
+                <span class="card-title">交易记录</span>
+                <table class="striped centered">
+                    <thead>
+                    <tr>
+                        <th>订单编号</th>
+                        <th>交易时间</th>
+                        <th>交易类型</th>
+                        <th>交易数额</th>
+                        <th>对方账号</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="contact : ${contacts}">
+                    <tr>
+                        <td th:text="${contact.getSchoolId()}"></td>
+                        <td th:text="${contact.getPosition()}"></td>
+                        <td th:text="${contact.getPhone()}"></td>
+                        <td th:text="${contact.getMore()}"></td>
+                        <td th:text="${contact.getMore()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="./static/history/js/index.js" th:src="@{~/history/js/index.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>主页|模拟ATM管理系统</title>
+    <link rel="icon" type="image/x-icon" th:href="@{~/src/images/icon.ico}">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="shortcut icon" th:href="@{~/src/images/icon.ico}" type="image/x-icon">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" href="./static/transaction/css/index.css" th:href="@{~/transaction/css/index.css}"
+        rel="styleSheet" />
+</head>
+
+<body>
+    <ul id="slide-out" class="side-nav fixed">
+        <li><img alt="logo" src="./static/src/images/logo.png" th:src="@{~/src/images/logo.png}" id="logo-container">
+        </li>
+        <li><a href="/index">首页</a></li>
+        <li class="active"><a href="/transaction">交易</a></li>
+        <li><a href="/history">查看交易历史</a></li>
+        <li><a href="/password">修改密码</a></li>
+        <li><a href="/logout">退出登录</a></li>
+    </ul>
+    <div class="main">
+        <nav class="bg-primary" role="navigation">
+            <div class="nav-wrapper">
+                <div class="brand-logo">模拟ATM管理系统</div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="card-panel" id="name-card">
+                <div th:text="${schoolName}" id="welcome">欢迎您，陈炫栋</div>
+            </div>
+            <div id="card-container">
+                <div class="card">
+                    <div class="card-title">存款</div>
+                    <span>请放入纸币</span>
+                    <div class="card-action">
+                        <a href="#" id="saving-btn">存款</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">取款</div>
+
+                    <div class="input-field">
+                        <input id="withdraw" name="money" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+                            maxlength="5">
+                        <label for="withdraw">金额</label>
+                    </div>
+                    <div class="card-action" id="withdraw-action">
+                        <a href="#" id="withdraw-btn">取款</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">转账</div>
+                    <div id="transfer-input">
+                        <div class="input-field">
+                            <input id="id" name="id" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+                                maxlength="16">
+                            <label for="id">对方卡号</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="money" name="money" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+                                maxlength="5">
+                            <label for="money">金额</label>
+                        </div>
+                    </div>
+                    <div class="card-action" id="transfer-action">
+                        <a href="#" id="transfer-btn">转账</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--modal-->
+    <div id="saving-modal" class="modal">
+        <div class="modal-content">
+            <h4 id="saving-data"></h4>
+            <p>请确认存入金额</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">退币</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="saving-confirm">确认</a>
+        </div>
+    </div>
+    <div id="withdraw-modal" class="modal">
+        <div class="modal-content">
+            <h4 id="withdraw-data"></h4>
+            <p>请确认取出金额</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">取消</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="withdraw-confirm">确认</a>
+        </div>
+    </div>
+    <div id="transfer-modal" class="modal">
+        <div class="modal-content">
+            <h4 id="transfer-data"></h4>
+            <p>请确认转账信息</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">取消</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="transfer-confirm">确认</a>
+        </div>
+    </div>
+    <div id="receipt-modal" class="modal">
+        <div class="modal-content">
+            <h4>是否需要打印回单</h4>
+            <p>交易已成功</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">否</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">是</a>
+        </div>
+    </div>
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <h4 id="error-header">余额不足</h4>
+            <p id="error-content">请检查账户余额</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+        </div>
+    </div>
+    <script src="./static/src/js/md5.js" th:href="@{~/src/js/md5.js}" type="text/javascript" ></script>
+    <script src="./static/transaction/js/index.js" th:src="@{~/index/js/index.js}"></script>
+</body>
+
+</html>
