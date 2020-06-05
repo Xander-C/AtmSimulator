@@ -15,6 +15,8 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
         Object object = request.getSession().getAttribute("user");
+        if (request.getRequestURI().equals("/test")) return true;
+        if (request.getRequestURI().equals("/test-file")) return true;
         if (Pattern.matches(SRC_REG, request.getRequestURI())) {
             return true;
         }

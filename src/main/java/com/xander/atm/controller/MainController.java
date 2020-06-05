@@ -53,10 +53,11 @@ public class MainController {
             String accountId = new String(base64decodedBytes0, StandardCharsets.UTF_8);
             i.setAccountId(accountId);
             String toAccountIdBase64 = i.getToAccount();
+            System.out.println(toAccountIdBase64);
             if(toAccountIdBase64 != null) {
                 byte[] base64decodedBytes1 = Base64.getDecoder().decode(toAccountIdBase64);
                 String ToAccountId = new String(base64decodedBytes1, StandardCharsets.UTF_8);
-                i.setAccountId(ToAccountId);
+                i.setToAccount(ToAccountId);
             }
         }
         model.addAttribute("statements", list);
@@ -74,5 +75,10 @@ public class MainController {
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
         return "redirect:/login";
+    }
+
+    @RequestMapping("/test")
+    public String importData(){
+        return "test";
     }
 }

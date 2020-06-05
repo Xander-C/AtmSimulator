@@ -4,7 +4,9 @@ package com.xander.atm.controller;
 import com.xander.atm.pojo.Account;
 import com.xander.atm.service.ApiService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -50,5 +52,11 @@ public class ApiController {
     @RequestMapping("/change")
     public String change(String old, String newPwd, HttpServletRequest request){
         return apiService.change((String) request.getSession().getAttribute("user"), old, newPwd) + "";
+    }
+
+    @RequestMapping("/test-file")
+    public String testFile(@RequestParam("file") MultipartFile file){
+        apiService.resolveFile(file);
+        return "1";
     }
 }

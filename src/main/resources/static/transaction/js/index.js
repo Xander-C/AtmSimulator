@@ -34,7 +34,7 @@ document.querySelector("#withdraw-btn").addEventListener("click", () => {
         Materialize.toast('请输入取出金额', 4000);
         return;
     }
-    money = Math.floor(Math.random() * 200) * 100;
+    money = withdrawInput.val();
     withdrawData.innerHTML = "取出" + withdrawInput.val() + "元";
     $('#withdraw-modal').modal('open');
 })
@@ -49,10 +49,10 @@ const withdraw = async (money) => {
         $('#error-modal').modal('open');
     }
     const data = response.json();
-    if (data === 0) {
+    if (data == 0) {
         console.log(data);
         $('#receipt-modal').modal('open');
-    } else if (data === 1) {
+    } else if (data == 1) {
         errorHeader.innerHTML = "余额不足";
         errorContent.innerHTML = "请检查余额";
         $('#error-modal').modal('open');
@@ -83,8 +83,11 @@ document.querySelector("#transfer-btn").addEventListener("click", () => {
 
 document.querySelector("#transfer-confirm").addEventListener("click", () => {
     // const idMd5 = $.md5(idInput.val());
-    const idMd5 = atob(idInput.val())
-    transfer(idMd5, moneyInput.val());
+    const id = idInput.val();
+    const idMd5 = btoa(id);
+    const money = moneyInput.val();
+    console.log(id, idMd5, money)
+    transfer(idMd5, money);
 })
 
 const transfer = async (id, money) => {

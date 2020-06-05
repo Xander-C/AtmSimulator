@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>主页|藤县中考会考报名数据管理系统</title>
+    <link rel="icon" type="image/x-icon" th:href="@{~/src/images/icon.ico}">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="shortcut icon" th:href="@{~/src/images/icon.ico}" type="image/x-icon">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" href="./index/css/index.css" th:href="@{~/index/css/index.css}" rel="styleSheet" />
+</head>
+
+<body>
+    <ul id="slide-out" class="side-nav fixed">
+        <li><img alt="logo" src="./src/images/logo.png" th:src="@{~/src/images/logo.png}" id="logo-container">
+        </li>
+        <li class="active"><a href="/index">首页</a></li>
+        <li><a href="/transaction">交易</a></li>
+        <li><a href="/history">查看交易历史</a></li>
+        <li><a href="/password">修改密码</a></li>
+        <li><a href="/logout">退出登录</a></li>
+    </ul>
+    <div class="main">
+        <nav class="bg-primary" role="navigation">
+            <div class="nav-wrapper">
+                <div class="brand-logo">模拟ATM管理系统</div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="card-panel" id="name-card">
+                <div th:text="${name}" id="welcome">欢迎您，</div>
+            </div>
+            <div id="card-container">
+                <div class="card">
+                    <form action="/test-file" enctype="multipart/form-data" method="POST">
+                        <div class="file-field input-field">
+                            <div class="btn bg-primary">
+                                <span>文件</span>
+                                <input type="file" name="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input id="file-path0" class="file-path validate" type="text">
+                                <label for="file-path0"></label>
+                            </div>
+                        </div>
+                        <button class="btn bg-primary" type="submit">上传</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./index/js/index.js" th:src="@{~/index/js/index.js}"></script>
+</body>
+
+</html>
