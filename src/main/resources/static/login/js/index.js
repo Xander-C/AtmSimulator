@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    $('.modal').modal();
+});
+
 const submitBtn = document.querySelector("#submit-btn");
 const idInput = $("#id");
 const pwdInput = $("#pwd")
@@ -10,8 +14,10 @@ function submit() {
     if (check()) {
         let id = idInput.val();
         let pwd = pwdInput.val();
-        id = $.md5(id);
-        pwd = $.md5(pwd);
+        // id = $.md5(id);
+        // pwd = $.md5(pwd);
+        id = btoa(id);
+        pwd = btoa(pwd)
         console.log(id, pwd);
         getLogin(id, pwd);
     }
@@ -30,11 +36,12 @@ const check = () => {
 }
 
 const getLogin = async (id, pwd) => {
-    const response = await fetch(`/check?id=${id}&pwd=${pwd}`);
+    const response = await fetch(`/login/check?id=${id}&pwd=${pwd}`);
     if (response.status != 200) {
         warning("服务器错误", "请检查网络连接")
     }
     const data = await response.json();
+    console.log(data);
     if (data === 0) {
         window.location = "/index";
     } else if (data === 4) {

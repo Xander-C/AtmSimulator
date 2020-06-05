@@ -12,12 +12,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link type="text/css" href="./static/index/css/index.css" th:href="@{~/index/css/index.css}" rel="styleSheet" />
+    <link type="text/css" href="./index/css/index.css" th:href="@{~/index/css/index.css}" rel="styleSheet" />
 </head>
 
 <body>
     <ul id="slide-out" class="side-nav fixed">
-        <li><img alt="logo" src="./static/src/images/logo.png" th:src="@{~/src/images/logo.png}" id="logo-container">
+        <li><img alt="logo" src="./src/images/logo.png" th:src="@{~/src/images/logo.png}" id="logo-container">
         </li>
         <li class="active"><a href="/index">首页</a></li>
         <li><a href="/transaction">交易</a></li>
@@ -33,21 +33,21 @@
         </nav>
         <div class="container">
             <div class="card-panel" id="name-card">
-                <div th:text="${schoolName}" id="welcome">欢迎您，陈炫栋</div>
+                <div th:text="${name}" id="welcome">欢迎您，</div>
             </div>
             <div id="card-container">
                 <div class="card">
                     <div class="card-title">账户信息</div>
-                    <span>姓名：</span><span>fasd</span><div></div>
-                    <span>余额：</span><span>2000</span><span>元</span>
+                    <span>姓名：</span><span th:text="${name}">fasd</span><div></div>
+                    <span>余额：</span><span th:text="${money}">2000</span><span>元</span>
                 </div>
                 <div class="card">
                     <div class="card-title">账户操作</div>
                     <span>请选择所需操作的业务</span>
                     <div class="card-action">
-                        <a href="#">存款</a>
-                        <a href="#">取款</a>
-                        <a href="#">转账</a>
+                        <a href="/transaction">存款</a>
+                        <a href="/transaction">取款</a>
+                        <a href="/transaction">转账</a>
                     </div>
                     
                 </div>
@@ -55,13 +55,13 @@
                     <div class="card-title">交易历史</div>
                     <span>点击查看交易历史</span>
                     <div class="card-action">
-                        <a href="#">查看交易历史</a>
+                        <a href="/history">查看交易历史</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="./static/index/js/index.js" th:src="@{~/index/js/index.js}"></script>
+    <script src="./index/js/index.js" th:src="@{~/index/js/index.js}"></script>
 </body>
 
 </html>

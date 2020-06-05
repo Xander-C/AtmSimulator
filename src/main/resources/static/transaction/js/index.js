@@ -82,18 +82,19 @@ document.querySelector("#transfer-btn").addEventListener("click", () => {
 })
 
 document.querySelector("#transfer-confirm").addEventListener("click", () => {
-    const idMd5 = md5(idInput.val());
+    // const idMd5 = $.md5(idInput.val());
+    const idMd5 = atob(idInput.val())
     transfer(idMd5, moneyInput.val());
 })
 
 const transfer = async (id, money) => {
     const response = await fetch(`/transfer?id=${id}&money=${money}`);
-    if (response.status != 200) {
+    if (response.status !== 200) {
         errorHeader.innerHTML = "服务器错误";
         errorContent.innerHTML = "请检查网络连接";
         $('#error-modal').modal('open');
     }
-    const data = response.json();
+    const data = await response.json();
     if (data === 0) {
         console.log(data);
         $('#receipt-modal').modal('open');

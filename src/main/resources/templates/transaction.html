@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link type="text/css" href="./static/transaction/css/index.css" th:href="@{~/transaction/css/index.css}"
+    <link type="text/css" href="./transaction/css/index.css" th:href="@{~/transaction/css/index.css}"
         rel="styleSheet" />
 </head>
 
@@ -34,7 +34,7 @@
         </nav>
         <div class="container">
             <div class="card-panel" id="name-card">
-                <div th:text="${schoolName}" id="welcome">欢迎您，陈炫栋</div>
+                <div th:text="${name}" id="welcome">欢迎您，陈炫栋</div>
             </div>
             <div id="card-container">
                 <div class="card">
@@ -127,8 +127,8 @@
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
         </div>
     </div>
-    <script src="./static/src/js/md5.js" th:href="@{~/src/js/md5.js}" type="text/javascript" ></script>
-    <script src="./static/transaction/js/index.js" th:src="@{~/index/js/index.js}"></script>
+    <script src="./src/js/md5.js" th:href="@{~/src/js/md5.js}"></script>
+    <script src="./transaction/js/index.js" th:src="@{~/transaction/js/index.js}"></script>
 </body>
 
 </html>

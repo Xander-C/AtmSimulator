@@ -9,23 +9,25 @@ function submit() {
     if (check()) {
         let old = oldInput.val();
         let newPwd = newPwdInput.val();
-        old = $.md5(id);
-        newPwd = $.md5(pwd);
-        console.log(id, pwd);
+        //old = $.md5(id);
+        old = btoa(old)
+        //newPwd = $.md5(pwd);
+        newPwd = btoa(newPwd)
+        console.log(old, newPwd);
         changePassword(old, newPwd);
     }
 }
 
 const check = () => {
-    if (idInput.val().length != 16) {
+    if (oldInput.val().length != 6) {
         Materialize.toast('旧密码长度应为6位', 4000);
         return false;
     }
-    if (pwdInput.val().length != 6) {
+    if (newPwdInput.val().length != 6) {
         Materialize.toast('新密码长度应为6位', 4000);
         return false;
     }
-    if (pwdInput.val() != repeatInput.val()) {
+    if (newPwdInput.val() != repeatInput.val()) {
         Materialize.toast('重复密码与新密码不一致', 4000);
         return false;
     }
@@ -33,6 +35,7 @@ const check = () => {
 }
 const changePassword = async (old, newPwd) => {
     const response = await fetch(`/change?old=${old}&newPwd=${newPwd}`);
+    if(response.status !== 200) Materialize.toast('网络错误', 4000);
     const data = await response.json();
     if (data === 0) {
         Materialize.toast('修改成功', 4000);
