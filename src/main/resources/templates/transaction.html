@@ -24,7 +24,7 @@
         <li class="active"><a href="/transaction">交易</a></li>
         <li><a href="/history">查看交易历史</a></li>
         <li><a href="/password">修改密码</a></li>
-        <li><a href="/logout">退出登录</a></li>
+        <li><a href="#logout-modal">退卡</a></li>
     </ul>
     <div class="main">
         <nav class="bg-primary" role="navigation">
@@ -125,6 +125,16 @@
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+        </div>
+    </div>
+
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <h4>请保存好银行卡</h4>
+            <p>正在退卡</p>
+        </div>
+        <div class="modal-footer">
+            <a href="/logout" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
         </div>
     </div>
     <script src="./src/js/md5.js" th:href="@{~/src/js/md5.js}"></script>

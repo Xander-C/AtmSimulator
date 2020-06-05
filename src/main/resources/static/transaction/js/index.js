@@ -24,12 +24,29 @@ const save = async (money) => {
 }
 
 
-
+let withdrawMoney = 0;
 const withdrawInput = $("#withdraw");
 const withdrawData = document.querySelector("#withdraw-data")
 const errorHeader = document.querySelector("#error-header");
 const errorContent = document.querySelector("#error-content");
 document.querySelector("#withdraw-btn").addEventListener("click", () => {
+    if (withdrawMoney > 50000){
+        Materialize.toast('单日取出超过50000', 4000);
+        return;
+    }
+
+    if (withdrawInput.val() <= 0){
+        Materialize.toast('金额要为正整数', 4000);
+        return;
+    }
+    if (withdrawInput.val()%100!=0){
+        Materialize.toast('金额只能为整百', 4000);
+        return;
+    }
+    if (withdrawInput.val() >10000){
+        Materialize.toast('单次取出限额10000元', 4000);
+        return;
+    }
     if (withdrawInput.val().length == 0) {
         Materialize.toast('请输入取出金额', 4000);
         return;
@@ -42,6 +59,7 @@ document.querySelector("#withdraw-confirm").addEventListener("click", () => {
     withdraw(money);
 })
 const withdraw = async (money) => {
+    withdrawMoney += money;
     const response = await fetch(`/withdraw?money=${money}`);
     if (response.status != 200) {
         errorHeader.innerHTML = "服务器错误";
@@ -73,8 +91,16 @@ document.querySelector("#transfer-btn").addEventListener("click", () => {
         Materialize.toast('卡号不足16位', 4000);
         return;
     }
+    if (idInput.val()== "1234567890123456") {
+        Materialize.toast('不能转账给自己', 4000);
+        return;
+    }
     if (moneyInput.val().length == 0) {
         Materialize.toast('请输入金额', 4000);
+        return;
+    }
+    if (moneyInput.val() == 0) {
+        Materialize.toast('金额不能为0', 4000);
         return;
     }
     transferData.innerHTML = "将向卡号" + idInput.val() + "转账" + moneyInput.val() + "元";

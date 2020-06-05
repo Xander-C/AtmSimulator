@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    $('.modal').modal();
+});
+
 const submitBtn = document.querySelector("#submit-btn");
 submitBtn.addEventListener("click", () => {
     submit();
