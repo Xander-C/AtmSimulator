@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS `account`(
+   `id` TEXT NOT NULL,
+   `name` TEXT NOT NULL,
+   `password` TEXT NOT NULL,
+   `money` DOUBLE NOT NULL,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `statement`(
+   `id` INT UNSIGNED AUTO_INCREMENT,
+   `accountId` TEXT NOT NULL,
+   `time` TEXT NOT NULL,
+   `type` INT NOT NULL,
+   `money` DOUBLE NOT NULL,
+   `toAccount` TEXT NULL,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
